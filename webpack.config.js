@@ -23,7 +23,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
         inline: true,
         port: '8080',
         allowedHosts: [
-            'abc.com'
+            'localhost'
         ]
       },      
      plugins: [

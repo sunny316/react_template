@@ -3,9 +3,8 @@ var ReactDom = require('react-dom');
 
 class LoginPage extends React.Component{
   render(){
-    return(
-      <div style={{ textAlign: 'center' }}>
-      </div>
+    return (
+      <div> hello world</div>
     );
   }
 }
