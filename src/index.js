@@ -47,6 +47,9 @@ const styles = theme => ( {
     color: "#656565",
     paddingBottom: "25px",
     fontFamily: "helveticaNeueLight"
+  },
+  formgrid: {
+    marginTop: "2%"
   }
 });
 class LoginPage extends React.Component{
@@ -54,7 +57,7 @@ class LoginPage extends React.Component{
   constructor(props){
     super(props)
     this.state = {
-      username: '',
+      email: '',
       password: '',
       showPassword: false,
     };
@@ -88,6 +91,7 @@ class LoginPage extends React.Component{
           justify="center"
           alignItems="center"
           spacing={2}
+          className={classes.formgrid}
           >
           <Grid item>
             <Typography variant="h3" className={classes.signin}>
@@ -101,13 +105,13 @@ class LoginPage extends React.Component{
           </Grid>
           <Grid item>
             <FormControl variant="outlined" className={classes.formwidth}>
-              <InputLabel htmlFor="outlined-adornment-username">Username</InputLabel>
+              <InputLabel htmlFor="outlined-adornment-email">Email</InputLabel>
                 <OutlinedInput
-                  id="outlined-adornment-username"
+                  id="outlined-adornment-email"
                   type='text'
-                  value={this.state.username}
+                  value={this.state.email}
                   style={{ borderRadius: "30px"}}
-                  onChange={(e)=>this.handleChange(e, 'username')}
+                  onChange={(e)=>this.handleChange(e, 'email')}
                   labelWidth={70}
                   required={true}
                 />
@@ -174,6 +178,11 @@ class LoginPage extends React.Component{
             direction="row"
             alignItems="center"
             alignContent="flex-end"
+            style={{
+              position: "absolute",
+              left: 0,
+              bottom: 0
+            }}
             >
             <div style={{ color: '#656565', lineHeight: 1.17, fontSize: ".8rem", flexGrow:1 }}>
               <span>Made with </span>
