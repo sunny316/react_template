@@ -1,15 +1,7 @@
 var React = require('react');
 var ReactDom = require('react-dom');
-import Fab from '@material-ui/core/Fab';
-import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import IconButton from '@material-ui/core/IconButton';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import { Grid, Radio, Fab, TextField, OutlinedInput, FormControl, InputLabel, InputAdornment, IconButton, TableFooter } from '@material-ui/core';
+import { Visibility, VisibilityOff, Favorite } from '@material-ui/icons';
 
 
 class LoginPage extends React.Component{
@@ -77,6 +69,16 @@ class LoginPage extends React.Component{
             />
           </FormControl>
         </Grid>
+        <Grid item
+         container
+         flexDirection="row"
+         alignItems="center"
+         justify="center"
+        >
+          <Radio style={{color: 'rgb(122, 201, 255)' }} />
+          <span style={{ marginRight: "16px", fontSize: 16, fontFamily: 'helveticaNeueLight', fontWeight: 400 }}>Remember me</span>
+          <span style={{ color: '#696969', fontSize: 16, fontFamily: 'helveticaNeueLight', fontWeight: 400 }}>Forgot password ?</span>
+        </Grid>
         <Grid item>
           <Fab variant="extended" color="primary" style={{backgroundColor: '#41e590', width: '250px'}}>
             Navigate
@@ -96,9 +98,23 @@ class LoginPage extends React.Component{
           </Fab>
         </Grid>
         <Grid item>
-          <div style={{ color: '#6c6c6c'}}>
+          <div style={{ color: '#696969', fontSize: 16, fontFamily: 'helveticaNeueLight', fontWeight: 400 }}>
             Don't have an account? Sign Up
           </div>
+        </Grid>
+        <Grid container item
+          direction="row"
+          alignItems="center"
+          alignContent="flex-end"
+          >
+          <div style={{ color: '#656565', lineHeight: 1.17, fontSize: ".8rem", flexGrow:1 }}>
+            <span>Made with </span>
+            <Favorite style={{ color: 'rgb(234, 84, 85)', fontSize: ".8rem" }}/>
+            <span> in Chicago</span>
+          </div>
+          <span style={{ color: '#C8C8C8', fontSize: "1rem", marginRight: "20px", lineHeight: 1.2 }}>Privacy Policy</span>
+          <span style={{ color: '#C8C8C8', fontSize: "1rem", marginRight: "20px", lineHeight: 1.2}}>Term of use</span>
+          <span style={{ color: '#C8C8C8', fontSize: "1rem", marginRight: "20px", lineHeight: 1.2}}>Helps</span>
         </Grid>
       </Grid>
     );
