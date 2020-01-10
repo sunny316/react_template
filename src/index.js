@@ -41,7 +41,6 @@ const styles = theme => ( {
     fontWeight: 300,
     fontStretch: "normal",
     fontStyle: "normal",
-    lineHeight: ".11",
     letterSpacing: ".36px",
     textAlign: "center",
     color: "#656565",
