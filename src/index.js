@@ -11,19 +11,67 @@ import { Fragment } from 'react';
 
 
 
-const styles = theme => ( {
+const styles = theme => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
   },
   formwidth: {
-    width: "300px"
+    width: "300px",
+    [theme.breakpoints.up(1920)]: {
+      width: "20%",
+    },
   },
-  header:{
+  inputBox: {
+    width: "100%",
+    minHeight: "56px",
+    [theme.breakpoints.up(1920)]: {
+      minHeight: "64px",
+    },
+    [theme.breakpoints.up(2560)]: {
+      minHeight: "80px",
+    },
+    [theme.breakpoints.up(3200)]: {
+      minHeight: "96px",
+    },
+    [theme.breakpoints.up(3840)]: {
+      minHeight: "112px",
+    },
+    [theme.breakpoints.up(4600)]: {
+      minHeight: "128px",
+    },
+    [theme.breakpoints.up(5200)]: {
+      minHeight: "146px",
+    },
+  },
+  insideFormWidth: {
+    width: "100%",
+    height: "100%",
+    minHeight: "56px",
+    [theme.breakpoints.up(1920)]: {
+      minHeight: "64px",
+    },
+    [theme.breakpoints.up(2560)]: {
+      minHeight: "80px",
+    },
+    [theme.breakpoints.up(3200)]: {
+      minHeight: "96px",
+    },
+    [theme.breakpoints.up(3840)]: {
+      minHeight: "112px",
+    },
+    [theme.breakpoints.up(4600)]: {
+      minHeight: "128px",
+    },
+    [theme.breakpoints.up(5200)]: {
+      minHeight: "146px",
+    },
+  },
+  header: {
     backgroundColor: "#f9f9f9",
     boxShadow: "0 0 0 0"
   },
-  title:{
+  title: {
     flexGrow: 1,
     color: 'black'
   },
@@ -32,7 +80,6 @@ const styles = theme => ( {
     fontWeight: 700,
     fontStretch: "condensed",
     fontStyle: "normal",
-    lineHeight: ".89",
     letterSpacing: ".9px",
     color: "#656565"
   },
@@ -44,16 +91,59 @@ const styles = theme => ( {
     letterSpacing: ".36px",
     textAlign: "center",
     color: "#656565",
-    paddingBottom: "25px",
     fontFamily: "helveticaNeueLight"
   },
   formgrid: {
     marginTop: "2%"
+  },
+  rememberText: {
+    marginRight: "16px",
+    fontSize: 16,
+    fontFamily: 'helveticaNeueLight',
+    fontWeight: 400
+  },
+  forgotText: {
+    color: '#696969',
+    fontSize: 16,
+    fontFamily: 'helveticaNeueLight',
+    fontWeight: 400
+  },
+  noAccountText: {
+    color: '#696969',
+    fontSize: 16,
+    fontFamily: 'helveticaNeueLight',
+    fontWeight: 400,
+  },
+  dividerStyle: {
+    height: '1px',
+    width: '115px',
+    backgroundColor: '#6c6c6c',
+  },
+  footerContainer: {
+    position: "absolute",
+    left: 0,
+    bottom: 0
+  },
+  footerText: {
+    color: '#656565',
+    lineHeight: 1.17,
+    fontSize: ".8rem",
+    flexGrow: 1
+  },
+  footerLoveIcon: {
+    color: 'rgb(234, 84, 85)', 
+    fontSize: ".8rem",
+  },
+  footerPrivacyText: {
+    color: '#C8C8C8',
+    fontSize: "1rem",
+    marginRight: "20px",
+    lineHeight: 1.2,
   }
 });
-class LoginPage extends React.Component{
-  
-  constructor(props){
+class LoginPage extends React.Component {
+
+  constructor(props) {
     super(props)
     this.state = {
       email: '',
@@ -62,14 +152,14 @@ class LoginPage extends React.Component{
     };
     this.handleClickShowPassword = this.handleClickShowPassword.bind(this)
     this.handleChange = this.handleChange.bind(this)
-  } 
+  }
   handleChange(event, prop) {
-    this.setState({  [prop]: event.target.value });
+    this.setState({ [prop]: event.target.value });
   };
-  handleClickShowPassword(){
+  handleClickShowPassword() {
     this.setState({ showPassword: !this.state.showPassword });
   };
-  render(){
+  render() {
     console.log(this.props);
     const { classes } = this.props;
     return (
@@ -91,7 +181,7 @@ class LoginPage extends React.Component{
           alignItems="center"
           spacing={2}
           className={classes.formgrid}
-          >
+        >
           <Grid item>
             <Typography variant="h3" className={classes.signin}>
               SIGN IN
@@ -102,29 +192,31 @@ class LoginPage extends React.Component{
               Enter your email and password to login
             </p>
           </Grid>
-          <Grid item>
-            <FormControl variant="outlined" className={classes.formwidth}>
+          <Grid item className={classes.formwidth}>
+            <FormControl variant="outlined" className={classes.insideFormWidth}>
               <InputLabel htmlFor="outlined-adornment-email">Email</InputLabel>
-                <OutlinedInput
-                  id="outlined-adornment-email"
-                  type='text'
-                  value={this.state.email}
-                  style={{ borderRadius: "30px"}}
-                  onChange={(e)=>this.handleChange(e, 'email')}
-                  labelWidth={70}
-                  required={true}
-                />
+              <OutlinedInput
+                id="outlined-adornment-email"
+                type='text'
+                value={this.state.email}
+                style={{ borderRadius: "30px" }}
+                onChange={(e) => this.handleChange(e, 'email')}
+                labelWidth={70}
+                required={true}
+                className={classes.inputBox}
+              />
             </FormControl>
           </Grid>
-          <Grid item>
-            <FormControl variant="outlined" className={classes.formwidth}>
+          <Grid item className={classes.formwidth}>
+            <FormControl variant="outlined" className={classes.insideFormWidth}>
               <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
               <OutlinedInput
                 id="outlined-adornment-password"
                 type={this.state.showPassword ? 'text' : 'password'}
                 value={this.state.password}
-                style={{ borderRadius: "30px"}}
-                onChange={(e)=>this.handleChange(e, 'password')}
+                style={{ borderRadius: "30px" }}
+                onChange={(e) => this.handleChange(e, 'password')}
+                className={classes.inputBox}
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton
@@ -145,13 +237,13 @@ class LoginPage extends React.Component{
             flexDirection="row"
             alignItems="center"
             justify="center"
-            >
-              <Radio style={{color: 'rgb(122, 201, 255)' }} />
-              <span style={{ marginRight: "16px", fontSize: 16, fontFamily: 'helveticaNeueLight', fontWeight: 400 }}>Remember me</span>
-              <span style={{ color: '#696969', fontSize: 16, fontFamily: 'helveticaNeueLight', fontWeight: 400 }}>Forgot password ?</span>
+          >
+            <Radio style={{ color: 'rgb(122, 201, 255)' }} />
+            <span className={classes.rememberText}>Remember me</span>
+            <span className={classes.forgotText}>Forgot password ?</span>
           </Grid>
-          <Grid item>
-            <Fab variant="extended" color="primary" className={classes.formwidth} style={{backgroundColor: '#41e590'}}>
+          <Grid item className={classes.formwidth}>
+            <Fab variant="extended" color="primary" className={classes.insideFormWidth} style={{ backgroundColor: '#41e590' }}>
               Navigate
             </Fab>
           </Grid>
@@ -159,17 +251,17 @@ class LoginPage extends React.Component{
             direction="row"
             justify="center"
             alignItems="center">
-            <div style={{ height: '1px', width: '115px', backgroundColor: '#6c6c6c' }} />
-            <span style={{ color: '#6c6c6c'}}>OR</span>
-            <div style={{ height: '1px', width: '115px', backgroundColor: '#6c6c6c' }} />
+            <div className={classes.dividerStyle} />
+            <span style={{ color: '#6c6c6c' }}>OR</span>
+            <div className={classes.dividerStyle} />
           </Grid>
-          <Grid item>
-            <Fab variant="extended" color="primary" className={classes.formwidth} style={{backgroundColor: '#fff', color: '#000' }}>
+          <Grid item className={classes.formwidth}>
+            <Fab variant="extended" color="primary" className={classes.insideFormWidth} style={{ backgroundColor: '#fff', color: '#000' }}>
               Login with Google
             </Fab>
           </Grid>
           <Grid item>
-            <div style={{ color: '#696969', fontSize: 16, fontFamily: 'helveticaNeueLight', fontWeight: 400 }}>
+            <div className={classes.noAccountText}>
               Don't have an account? Sign Up
             </div>
           </Grid>
@@ -177,20 +269,16 @@ class LoginPage extends React.Component{
             direction="row"
             alignItems="center"
             alignContent="flex-end"
-            style={{
-              position: "absolute",
-              left: 0,
-              bottom: 0
-            }}
-            >
-            <div style={{ color: '#656565', lineHeight: 1.17, fontSize: ".8rem", flexGrow:1 }}>
+            className={classes.footerContainer}
+          >
+            <div className={classes.footerText}>
               <span>Made with </span>
-              <Favorite style={{ color: 'rgb(234, 84, 85)', fontSize: ".8rem" }}/>
+              <Favorite className={classes.footerLoveIcon} />
               <span> in Chicago</span>
             </div>
-            <span style={{ color: '#C8C8C8', fontSize: "1rem", marginRight: "20px", lineHeight: 1.2 }}>Privacy Policy</span>
-            <span style={{ color: '#C8C8C8', fontSize: "1rem", marginRight: "20px", lineHeight: 1.2}}>Term of use</span>
-            <span style={{ color: '#C8C8C8', fontSize: "1rem", marginRight: "20px", lineHeight: 1.2}}>Helps</span>
+            <span  className={classes.footerPrivacyText}>Privacy Policy</span>
+            <span  className={classes.footerPrivacyText}>Term of use</span>
+            <span  className={classes.footerPrivacyText}>Helps</span>
           </Grid>
         </Grid>
       </Fragment>
