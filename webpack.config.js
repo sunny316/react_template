@@ -22,6 +22,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
         compress: true,
         inline: true,
         port: '8080',
+        disableHostCheck: true,
         allowedHosts: [
             '0.0.0.0'
         ]
