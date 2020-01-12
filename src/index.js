@@ -146,6 +146,7 @@ const HOC = (LoginPage) => {
   return (props) => {
     const theme = useTheme();
     let spacing = 2;
+    let borderRadius = "30px";
     const media1920 = useMediaQuery(theme.breakpoints.down(1920));
     const media2560 =  useMediaQuery(theme.breakpoints.between(1920, 2560));
     const media3200 = useMediaQuery(theme.breakpoints.between(3200, 3840));
@@ -153,21 +154,27 @@ const HOC = (LoginPage) => {
     const media4600 = useMediaQuery(theme.breakpoints.between(4600, 5200));
     const media5200 = useMediaQuery(theme.breakpoints.up(5200));
     if(media1920){
-      spacing = 2;
+      spacing = 2; // 4px multiplier up and down space so 16px(2*4 + 2*4) spacing
+      borderRadius = "30px";
     }else if(media2560){
       spacing = 3;
+      borderRadius = "40px";
     }else if(media3200) {
       spacing = 4;
+      borderRadius = "48px";
     }else if(media3840) {
-      spacing = 5;
-    }else if(media4600) {
       spacing = 6;
+      borderRadius = "56px";
+    }else if(media4600) {
+      spacing = 8;
+      borderRadius = "64px";
     }else if(media5200) {
-      spacing = 7;
+      spacing = 10;
+      borderRadius = "73px";
     }
     console.log(spacing);
     return(
-       <LoginPage {...props} spacing={spacing} />
+       <LoginPage {...props} spacing={spacing} borderRadius={borderRadius} />
     )
   }
 }
@@ -190,7 +197,7 @@ class LoginPage extends React.Component {
     this.setState({ showPassword: !this.state.showPassword });
   };
   render() {
-    const { classes, spacing } = this.props;
+    const { classes, spacing, borderRadius } = this.props;
     return (
       <Fragment>
         <AppBar position="static" className={classes.header}>
@@ -228,7 +235,7 @@ class LoginPage extends React.Component {
                 id="outlined-adornment-email"
                 type='text'
                 value={this.state.email}
-                style={{ borderRadius: "30px" }}
+                style={{ borderRadius: borderRadius }}
                 onChange={(e) => this.handleChange(e, 'email')}
                 labelWidth={70}
                 required={true}
@@ -243,7 +250,7 @@ class LoginPage extends React.Component {
                 id="outlined-adornment-password"
                 type={this.state.showPassword ? 'text' : 'password'}
                 value={this.state.password}
-                style={{ borderRadius: "30px" }}
+                style={{ borderRadius: borderRadius }}
                 onChange={(e) => this.handleChange(e, 'password')}
                 className={classes.inputBox}
                 endAdornment={
@@ -272,7 +279,7 @@ class LoginPage extends React.Component {
             <span className={classes.forgotText}>Forgot password ?</span>
           </Grid>
           <Grid item className={classes.formwidth}>
-            <Fab variant="extended" color="primary" className={classes.insideFormWidth} style={{ backgroundColor: '#41e590' }}>
+            <Fab variant="extended" color="primary" className={classes.insideFormWidth} style={{ backgroundColor: '#41e590', borderRadius: borderRadius }}>
               Navigate
             </Fab>
           </Grid>
@@ -285,7 +292,7 @@ class LoginPage extends React.Component {
             <div className={classes.dividerStyle} />
           </Grid>
           <Grid item className={classes.formwidth}>
-            <Fab variant="extended" color="primary" className={classes.insideFormWidth} style={{ backgroundColor: '#fff', color: '#000' }}>
+            <Fab variant="extended" color="primary" className={classes.insideFormWidth} style={{ backgroundColor: '#fff', color: '#000', borderRadius: borderRadius }}>
               Login with Google
             </Fab>
           </Grid>
