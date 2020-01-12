@@ -23,26 +23,47 @@ const styles = theme => ({
       width: "20%",
     },
   },
+  resize1: {
+    fontSize: "0.875rem",
+    [theme.breakpoints.up(1920)]: {
+      fontSize: "0.875rem"
+    },
+    [theme.breakpoints.up(2560)]: {
+      fontSize: "1.4rem"
+    },
+    [theme.breakpoints.up(3200)]: {
+      fontSize: "1.6rem"
+    },
+    [theme.breakpoints.up(3840)]: {
+      fontSize: "1.8rem"
+    },
+    [theme.breakpoints.up(4600)]: {
+      fontSize: "2rem"
+    },
+    [theme.breakpoints.up(5200)]: {
+      fontSize: "2.2rem"
+    }
+  },
   inputBox: {
     width: "100%",
     minHeight: "56px",
     [theme.breakpoints.up(1920)]: {
-      minHeight: "64px",
+      minHeight: "64px"
     },
     [theme.breakpoints.up(2560)]: {
-      minHeight: "80px",
+      minHeight: "80px"
     },
     [theme.breakpoints.up(3200)]: {
-      minHeight: "96px",
+      minHeight: "96px"
     },
     [theme.breakpoints.up(3840)]: {
-      minHeight: "112px",
+      minHeight: "112px"
     },
     [theme.breakpoints.up(4600)]: {
-      minHeight: "128px",
+      minHeight: "128px"
     },
     [theme.breakpoints.up(5200)]: {
-      minHeight: "146px",
+      minHeight: "146px"
     },
   },
   insideFormWidth: {
@@ -128,6 +149,9 @@ const styles = theme => ({
   },
   passlabel: {
     transform:"translate(30%,155%) scale(1)"
+  },
+  passlabelshrink: {
+    transform:"translate(30%,155%) scale(0.75)"
   },
   footerContainer: {
     position: "absolute",
@@ -255,7 +279,13 @@ class LoginPage extends React.Component {
           </Grid>
           <Grid item className={classes.formwidth}>
             <FormControl variant="outlined" className={classes.insideFormWidth}>
-              <InputLabel htmlFor="outlined-adornment-email" className={classes.emaillabel}>
+              <InputLabel 
+                htmlFor="outlined-adornment-email" 
+                className={classes.emaillabel}
+                classes={{
+                  shrink: classes.emaillabel
+                }}
+                >
                 <ThemeProvider theme={theme}>
                   <Typography variant="body2">
                     Email
@@ -271,18 +301,26 @@ class LoginPage extends React.Component {
                 labelWidth={labelWidth}
                 required={true}
                 className={classes.inputBox}
+                classes= {{
+                  input: classes.resize1,
+                }}
               />
             </FormControl>
           </Grid>
           <Grid item className={classes.formwidth}>
             <FormControl variant="outlined" className={classes.insideFormWidth}>
-              <InputLabel htmlFor="outlined-adornment-password" className={classes.passlabel}>
+              <InputLabel 
+                htmlFor="outlined-adornment-password" 
+                className={classes.passlabel}
+                classes={{
+                  shrink: classes.passlabelshrink
+                }}>
                 <ThemeProvider theme={theme}>
                   <Typography variant="body2">
                     Password
                   </Typography>
                 </ThemeProvider>
-                </InputLabel>
+              </InputLabel>
               <OutlinedInput
                 id="outlined-adornment-password"
                 type={this.state.showPassword ? 'text' : 'password'}
@@ -302,6 +340,10 @@ class LoginPage extends React.Component {
                 }
                 labelWidth={labelWidth*1.6}
                 required={true}
+                classes= {{
+                    input: classes.resize1,
+                }}
+                
               />
             </FormControl>
           </Grid>
