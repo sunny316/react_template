@@ -55,13 +55,13 @@ const styles = theme => ({
       marginBottom: "45px",
     },
     [theme.breakpoints.up(3840)]: {
-      marginBottom: "60px",
+      marginBottom: "55px",
     },
     [theme.breakpoints.up(4600)]: {
-      marginBottom: "75px",
+      marginBottom: "65px",
     },
     [theme.breakpoints.up(5200)]: {
-      marginBottom: "90px",
+      marginBottom: "75px",
     },
   },
   inputBox: {
@@ -207,7 +207,7 @@ const HOC = (LoginPage) => {
     const media5200up = useMediaQuery(theme.breakpoints.up(5200));
     if(media1920){
       spacing = 2; // 4px multiplier up and down space so 16px(2*4 + 2*4) spacing
-      labelWidth = 30;
+      labelWidth = 40;
       borderRadius = "30px";
     }else if(media2560){
       spacing = 3;
@@ -353,6 +353,7 @@ class LoginPage extends React.Component {
                     <IconButton
                       aria-label="toggle password visibility"
                       onClick={this.handleClickShowPassword}
+                      size="medium"
                     >
                       {this.state.showPassword ? <Visibility /> : <VisibilityOff />}
                     </IconButton>
