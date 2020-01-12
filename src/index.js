@@ -23,6 +23,26 @@ const styles = theme => ({
       width: "20%",
     },
   },
+  gridItem: {
+    [theme.breakpoints.up(1920)]: {
+      marginBottom: "15px",
+    },
+    [theme.breakpoints.up(2560)]: {
+      marginBottom: "30px",
+    },
+    [theme.breakpoints.up(3200)]: {
+      marginBottom: "45px",
+    },
+    [theme.breakpoints.up(3840)]: {
+      marginBottom: "60px",
+    },
+    [theme.breakpoints.up(4600)]: {
+      marginBottom: "75px",
+    },
+    [theme.breakpoints.up(5200)]: {
+      marginBottom: "90px",
+    },
+  },
   inputBox: {
     width: "100%",
     minHeight: "56px",
@@ -239,21 +259,21 @@ class LoginPage extends React.Component {
           spacing={spacing}
           className={classes.formgrid}
         >
-          <Grid item>
+          <Grid item className={classes.gridItem}>
             <ThemeProvider theme={theme}>
               <Typography variant="h3" className={classes.signin}>
                 SIGN IN
               </Typography>
             </ThemeProvider>
           </Grid>
-          <Grid item>
+          <Grid item className={classes.gridItem}>
             <ThemeProvider theme={theme}>
               <Typography variant="subtitle1" className={classes.subtitle1}>
                 Enter your email and password to login
               </Typography>
             </ThemeProvider>
           </Grid>
-          <Grid item className={classes.formwidth}>
+          <Grid item className={[classes.formwidth, classes.gridItem]}>
             <FormControl variant="outlined" className={classes.insideFormWidth}>
               <InputLabel htmlFor="outlined-adornment-email" className={classes.emaillabel}>
                 <ThemeProvider theme={theme}>
@@ -274,7 +294,7 @@ class LoginPage extends React.Component {
               />
             </FormControl>
           </Grid>
-          <Grid item className={classes.formwidth}>
+          <Grid item className={[classes.formwidth, classes.gridItem]}>
             <FormControl variant="outlined" className={classes.insideFormWidth}>
               <InputLabel htmlFor="outlined-adornment-password" className={classes.passlabel}>
                 <ThemeProvider theme={theme}>
@@ -310,6 +330,7 @@ class LoginPage extends React.Component {
             direction="row"
             alignItems="center"
             justify="center"
+            className={classes.gridItem}
           >
             <Radio style={{ color: 'rgb(122, 201, 255)' }} />
             <ThemeProvider theme={theme}>
@@ -321,7 +342,7 @@ class LoginPage extends React.Component {
               </Typography>
             </ThemeProvider>
           </Grid>
-          <Grid item className={classes.formwidth}>
+          <Grid item className={[classes.formwidth, classes.gridItem]}>
             <Fab variant="extended" color="primary" className={classes.insideFormWidth} style={{ backgroundColor: '#41e590', borderRadius: borderRadius }}>
               Navigate
             </Fab>
@@ -329,7 +350,9 @@ class LoginPage extends React.Component {
           <Grid container item
             direction="row"
             justify="center"
-            alignItems="center">
+            alignItems="center"
+            className={classes.gridItem}
+            >
             <div className={classes.dividerStyle} />
             <ThemeProvider theme={theme}>
               <Typography variant="subtitle1" style={{ color: '#6c6c6c' }}>
@@ -338,7 +361,7 @@ class LoginPage extends React.Component {
             </ThemeProvider>
             <div className={classes.dividerStyle} />
           </Grid>
-          <Grid item className={classes.formwidth}>
+          <Grid item className={[classes.formwidth, classes.gridItem]}>
             <Fab variant="extended" color="primary" className={classes.insideFormWidth} style={{ backgroundColor: '#fff', color: '#000', borderRadius: borderRadius }}>
               Login with Google
             </Fab>
@@ -407,6 +430,7 @@ function scalefontsize(basesize){
     },
   }
 }
+
 theme.typography.subtitle1 = scalefontsize(1.1);
 theme.typography.h3 = scalefontsize(1.8);
 theme.typography.h6 = scalefontsize(1.5);
