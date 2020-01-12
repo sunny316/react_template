@@ -1,6 +1,6 @@
 var React = require('react');
 var ReactDom = require('react-dom');
-import { Grid, Radio, Fab, OutlinedInput, FormControl, InputLabel, InputAdornment, IconButton, withStyles } from '@material-ui/core';
+import { Grid, Radio, Fab, OutlinedInput, FormControl, InputLabel, InputAdornment, IconButton, withStyles, useTheme, useMediaQuery } from '@material-ui/core';
 import { Visibility, VisibilityOff, Favorite } from '@material-ui/icons';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
@@ -141,6 +141,36 @@ const styles = theme => ({
     lineHeight: 1.2,
   }
 });
+
+const HOC = (LoginPage) => {
+  return (props) => {
+    const theme = useTheme();
+    let spacing = 2;
+    const media1920 = useMediaQuery(theme.breakpoints.down(1920));
+    const media2560 =  useMediaQuery(theme.breakpoints.between(1920, 2560));
+    const media3200 = useMediaQuery(theme.breakpoints.between(3200, 3840));
+    const media3840 = useMediaQuery(theme.breakpoints.between(3840, 4600));
+    const media4600 = useMediaQuery(theme.breakpoints.between(4600, 5200));
+    const media5200 = useMediaQuery(theme.breakpoints.up(5200));
+    if(media1920){
+      spacing = 2;
+    }else if(media2560){
+      spacing = 3;
+    }else if(media3200) {
+      spacing = 4;
+    }else if(media3840) {
+      spacing = 5;
+    }else if(media4600) {
+      spacing = 6;
+    }else if(media5200) {
+      spacing = 7;
+    }
+    console.log(spacing);
+    return(
+       <LoginPage {...props} spacing={spacing} />
+    )
+  }
+}
 class LoginPage extends React.Component {
 
   constructor(props) {
@@ -160,8 +190,7 @@ class LoginPage extends React.Component {
     this.setState({ showPassword: !this.state.showPassword });
   };
   render() {
-    console.log(this.props);
-    const { classes } = this.props;
+    const { classes, spacing } = this.props;
     return (
       <Fragment>
         <AppBar position="static" className={classes.header}>
@@ -179,7 +208,7 @@ class LoginPage extends React.Component {
           direction="column"
           justify="center"
           alignItems="center"
-          spacing={2}
+          spacing={spacing}
           className={classes.formgrid}
         >
           <Grid item>
@@ -234,7 +263,7 @@ class LoginPage extends React.Component {
           </Grid>
           <Grid item
             container
-            flexDirection="row"
+            direction="row"
             alignItems="center"
             justify="center"
           >
@@ -286,6 +315,6 @@ class LoginPage extends React.Component {
   }
 }
 
-const Lender = withStyles(styles)(LoginPage);
+const Lender = withStyles(styles)(HOC(LoginPage));
 ReactDom.render(<Lender />, document.getElementById("app"));
 
